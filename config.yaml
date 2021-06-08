@@ -22,7 +22,7 @@ params:
     - python
     - stan
   progressively: no
-  sitename: Hugo Tanka Theme
+  sitename: TotoBlog
   uselatex: yes
 markup:
   goldmark:
