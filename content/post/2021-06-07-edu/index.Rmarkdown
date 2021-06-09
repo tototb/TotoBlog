@@ -1,13 +1,25 @@
 ---
 title: EDU
-author: ''
+author: 'Toto'
 date: '2021-06-07'
 slug: []
-categories: []
-tags: []
+categories: ["Test"]
+tags: ["Test", "Crazy"]
 meta_img: images/image.png
-description: Description for the page
+description: First post test
 ---
 
 
-TOTOTESTE
+#TOTO_TESTE
+
+First test for Totoblog
+
+##Subindex
+
+Second reunion
+
+Inline formula `$S_n = \sum_{i=1}^n X_i$` example.
+
+
+
+![My picture](images/trilha.jpg)
