@@ -52,6 +52,16 @@ plot(g)
 
 ```
 
+```{r echo=TRUE}
+library(ggplot2)
+ggplot(Orange, aes(x = age, 
+                   y = circumference, 
+                   color = Tree)) +
+  geom_point() +
+  geom_line() +
+  guides(color = FALSE) +
+  theme_bw()
+```
 
 
 
