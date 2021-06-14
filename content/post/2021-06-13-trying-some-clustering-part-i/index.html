@@ -1,0 +1,86 @@
+---
+title: Trying some Clustering - Part I
+author: Toto
+date: '2021-06-13'
+slug: []
+categories:
+  - Cluster
+  - R
+tags:
+  - R
+meta_img: images/image.png
+description: Studies about Clustering Algorithms
+draft: false
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>The main reason for starting this study is a car parts problem. Here is the situation:</p>
+<p>I have a thousands of service orders for vehicles and I want to understand what parts appear more often together. For example, what parts are frequently in the same service order as a, let’s say, battery?</p>
+</div>
+<div id="definition" class="section level1">
+<h1>Definition</h1>
+<p>Basically, we have a matrix with the relative frequencies between the components we want to cluster. This matrix is called <em>Adjacency Matrix</em> and these characteristics lead us to a <em>non directed weighted graph approach</em>.</p>
+<blockquote>
+<p>A weighted graph or a network is a graph in which a number (the weight) is assigned to each edge. Such weights might represent for example costs, lengths or capacities, depending on the problem at hand. Such graphs arise in many contexts, for example in shortest path problems such as the traveling salesman problem.</p>
+<p><a href="https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)#Weighted_graph">Wikipedia</a></p>
+</blockquote>
+</div>
+<div id="techniques-for-clustering-weighted-graphs" class="section level1">
+<h1>Techniques for Clustering Weighted Graphs</h1>
+<p>Given the fact that I have no idea from where to start, I’m gonna try some existing R packages.</p>
+<p>One widely used package is the <a href="https://igraph.org/r/">igraph Package</a></p>
+<p>Reading the manual files, I’ve decided to go with walktrap, wich creates clusters based on short random walks between edges <a href="https://igraph.org/r/doc/cluster_walktrap.html">igraph Walktrap</a>.</p>
+<p>Let’s try an example:</p>
+<ol style="list-style-type: decimal">
+<li>Generate weighted Graph</li>
+</ol>
+<pre class="r"><code>library(tidyverse)
+library(igraph)
+
+## Weight Matrix (Adjancency Matrix)
+A &lt;- matrix(c(0,0,1,2,40,4,4,0,5,10), 10, 10)
+A &lt;- A%*%t(A)
+diag(A) &lt;- 1
+A[1,2] &lt;- 4
+A[2,1] &lt;- 4
+A[3,2] &lt;- 2
+A[2,3] &lt;- 2
+
+
+## Create graphs
+g &lt;- graph_from_adjacency_matrix(A, weighted=TRUE, mode = &quot;undirected&quot;)
+
+plot(g)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/graph_for_walktrap-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Apply Algorithm</li>
+</ol>
+<pre class="r"><code>library(tidyverse)
+library(igraph)
+
+# g &lt;- make_full_graph(5) %du% make_full_graph(5) %du% make_full_graph(5)
+# # %du% stands for disjoint union of the graph
+# g &lt;- add_edges(g, c(1,6, 1,11, 6,11))
+cm &lt;- cluster_walktrap(g)
+
+##Membership
+cat(membership(cm))</code></pre>
+<pre><code>## 1 1 2 2 2 2 2 3 2 2</code></pre>
+<pre class="r"><code>##Visualization
+plot(cm,g)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/apply_walktrap-1.png" width="672" /></p>
+<pre><code>Mental note: Since I already Know we&#39;re going to have a very 
+sparse matrix with actual data (because there are a lot of 
+unrelated parts that appear in many different service orders)</code></pre>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>So, that’s it for today.
+We explored the igraph package, created an network and its communities.</p>
+<p>Next time we are going to try this technique with real data and eplore the walktrap parameters.</p>
+<hr />
+</div>

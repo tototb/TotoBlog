@@ -1,17 +1,19 @@
 ---
-title: Trying some Clustering Algorithms - Part 1
+title: Trying some Clustering - Part I
 author: Toto
 date: '2021-06-13'
 slug: []
-categories: ["R", "Cluster"]
+categories:
+  - Cluster
+  - R
 tags:
-  - Clusterization
   - R
 meta_img: images/image.png
 description: Studies about Clustering Algorithms
 draft: false
 ---
-
+  
+  
 # Introduction
 
 The main reason for starting this study is a car parts problem. Here is the situation:
@@ -37,32 +39,60 @@ One widely used package is the [igraph Package](https://igraph.org/r/)
 Reading the manual files, I've decided to go with walktrap, wich creates clusters based on short random walks between edges [igraph Walktrap](https://igraph.org/r/doc/cluster_walktrap.html).
 
 
-First, let's experiment and understand the example from the documentation:
+Let's try an example:  
 
-```{r, walktrap_example, echo = TRUE}
+1. Generate weighted Graph
+```{r, graph_for_walktrap, echo = TRUE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(igraph)
-library(ggplot2)
 
-g <- make_full_graph(5) %du% make_full_graph(5) %du% make_full_graph(5)
-g <- add_edges(g, c(1,6, 1,11, 6, 11))
-cluster_walktrap(g)
-ggplot(g)
+## Weight Matrix (Adjancency Matrix)
+A <- matrix(c(0,0,1,2,40,4,4,0,5,10), 10, 10)
+A <- A%*%t(A)
+diag(A) <- 1
+A[1,2] <- 4
+A[2,1] <- 4
+A[3,2] <- 2
+A[2,3] <- 2
+
+
+## Create graphs
+g <- graph_from_adjacency_matrix(A, weighted=TRUE, mode = "undirected")
+
 plot(g)
 
 ```
 
-```{r echo=TRUE}
-library(ggplot2)
-ggplot(Orange, aes(x = age, 
-                   y = circumference, 
-                   color = Tree)) +
-  geom_point() +
-  geom_line() +
-  guides(color = FALSE) +
-  theme_bw()
+2. Apply Algorithm
+```{r, apply_walktrap, echo = TRUE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(igraph)
+
+# g <- make_full_graph(5) %du% make_full_graph(5) %du% make_full_graph(5)
+# # %du% stands for disjoint union of the graph
+# g <- add_edges(g, c(1,6, 1,11, 6,11))
+cm <- cluster_walktrap(g)
+
+##Membership
+cat(membership(cm))
+
+##Visualization
+plot(cm,g)
+
 ```
 
+```
+Mental note: Since I already Know we're going to have a very 
+sparse matrix with actual data (because there are a lot of 
+unrelated parts that appear in many different service orders)
+```
 
+# Conclusion
 
+So, that's it for today.
+We explored the igraph package, created an network and its communities.  
+
+Next time we are going to try this technique with real data and eplore the walktrap parameters.
+
+---------------------
 
