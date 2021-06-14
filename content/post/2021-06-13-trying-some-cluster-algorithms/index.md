@@ -9,7 +9,7 @@ tags:
   - R
 meta_img: images/image.png
 description: Studies about Clustering Algorithms
-draft: true
+draft: false
 ---
 
 # Introduction
