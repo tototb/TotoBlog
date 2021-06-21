@@ -1,5 +1,5 @@
 baseurl: https://tototubablog.netlify.app
-title: Hugo Tanka Theme Demo
+title: TotoTuba Blog
 author: Nan Xiao
 canonifyurls: yes
 languagecode: en
@@ -36,12 +36,3 @@ menu:
     - name: About
       url: /about/
       weight: 2
-    - name: GitHub
-      url: https://github.com/nanxstats
-      weight: 3
-    - name: Twitter
-      url: https://twitter.com/nanxstats
-      weight: 4
-    - name: Subscribe
-      url: /index.xml
-      weight: 5

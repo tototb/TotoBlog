@@ -1,0 +1,60 @@
+---
+title: Atavism
+author: Toto
+date: '2021-06-20'
+slug: Atavism
+categories:
+  - Poetry
+  - Wild
+tags:
+  - Wild
+  - Poetry
+  - Adventure
+meta_img: images/image.png
+description: Description for the page
+---
+
+Since I've read "The Call of The Wild" by Jack London, I was totally caught by a poem in the epigraph of the book, which is named "Atavism" and authored by [John Myers O'Hara](https://en.wikipedia.org/wiki/John_Myers_O%27Hara)
+
+So, here it is:
+  
+>Old longings nomadic leap
+>Chafing at custom's chain
+>Again from its brumal sleep
+>Wakens the ferine strain.
+
+>Helots of houses no more
+>Let us be out, be free!
+>Fragrance through the window and door
+>Wafts from the woods, the sea!
+>
+>After the torpor of will
+>Morbid the inner strife
+>Welcome the animal thrill
+>Lending a zest to life.
+>
+>Banish the volumes revered
+>Sever from centuries dead
+>Ceilings the lamp flicker cheered
+Barter for stars instead.
+>
+>Temple, thy dreams with the trees
+>Nature thy god alone
+>Worship the sun and the breeze
+>Altars where non atone.
+>
+>Voices of Solitude call,
+>Whisper of sedge and stream 
+>Loosen the fetters that gall
+>Back to the primal scheme.
+>
+>Feel the great throbbing terrene
+>Pulse in thy body beat! 
+>Conscious again of the green
+>Verdure beneath the feet.
+>
+>Callous to pain as the rose,
+>Breathe with instinct's delight
+>Live the existence that goes
+>Soulless into the night.
+> `r tufte::quote_footer('--- John Myers O'Hara')`
